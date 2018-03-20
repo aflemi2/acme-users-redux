@@ -6,6 +6,15 @@ const Nav = ({ path }) => {
     <ul>
       <li>
        {
+         path === '/products'? (
+           <span>Products</span>
+         ) : (
+           <Link to='/products'>Products</Link>
+         )
+       }
+      </li>
+      <li>
+       {
          path === '/'? (
            <span>Users</span>
          ) : (

@@ -4,6 +4,8 @@ import Users from './Users';
 import UserForm from './UserForm';
 import axios from 'axios';
 import Nav from './Nav';
+import Products from './Products';
+import store from './store';
 
 class App extends Component {
   constructor(){
@@ -34,8 +36,9 @@ class App extends Component {
       <Router>
         <div>
           <Route render = { ({ location })=> <Nav path={ location.pathname } />} />
-          <Route path='/' exact render = { ()=> <Users users = { users } /> } />
-          <Route path='/users/create' exact render = { ()=> <UserForm onCreateUser = { onCreateUser }/> } />
+          <Route exact path='/' render = { ()=> <Users users = { users } /> } />
+          <Route exact path='/products' component = { Products } />
+          <Route exact path='/users/create' render = { ()=> <UserForm onCreateUser = { onCreateUser }/> } />
         </div>
       </Router>
     );
