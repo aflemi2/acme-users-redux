@@ -10,8 +10,8 @@ import store from './store';
 class App extends Component {
   constructor(){
     super();
-    this.state={
-      users: []
+    this.state = {
+      users: store.getState().users
     };
     this.onCreateUser = this.onCreateUser.bind(this);
   }
@@ -19,7 +19,8 @@ class App extends Component {
   componentDidMount(){
     axios.get('/api/users')
     .then( results => results.data)
-    .then( users => this.setState({ users }))
+    .then( users => store.dispatch({type: 'SET_USERS', users}));
+    this.unsubcribe = store.subscribe( ()=> this.setState(store.getState()));
   }
 
  onCreateUser(user){
